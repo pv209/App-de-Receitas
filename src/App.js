@@ -1,20 +1,38 @@
 import React from 'react';
-import './App.css';
-import rockGlass from './images/rockGlass.svg';
+import { Switch, Route } from 'react-router-dom';
+
+import NotFound from './pages/NotFound';
+
+/*
+import Login from './pages/Login';
+import Foods from './pages/Foods';
+import Drinks from './pages/Drinks';
+import Perfil from './pages/Perfil';
+import Explore from './pages/Explore';
+ */
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <div className="meals">
-      <span className="logo">TRYBE</span>
-      <object
-        className="rocksGlass"
-        type="image/svg+xml"
-        data={ rockGlass }
-      >
-        Glass
-      </object>
-    </div>
+    <Switch>
+      <Route exact path="/" component={ NotFound } />
+      <Route path="/comidas" component={ NotFound } />
+      <Route path="/bedidas" component={ NotFound } />
+      <Route path="/comidas/:id" component={ NotFound } />
+      <Route path="/bedidas/:id" component={ NotFound } />
+      <Route path="/comidas/:id/in-progress" component={ NotFound } />
+      <Route path="/bedidas/:id/in-progress" component={ NotFound } />
+      <Route path="/explorar" component={ NotFound } />
+      <Route path="/explorar/comidas" component={ NotFound } />
+      <Route path="/explorar/bebidas" component={ NotFound } />
+      <Route path="/explorar/comidas/ingredientes" component={ NotFound } />
+      <Route path="/explorar/bebidas/ingredientes" component={ NotFound } />
+      <Route path="/explorar/comidas/area" component={ NotFound } />
+      <Route path="/perfil" component={ NotFound } />
+      <Route path="/receitas-feitas" component={ NotFound } />
+      <Route path="/receitas-favoritas" component={ NotFound } />
+    </Switch>
   );
 }
 
