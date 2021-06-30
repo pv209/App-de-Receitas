@@ -1,9 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Footer() {
   return (
     <footer data-testid="footer">
-      Test
+      <Link to="/bebidas" />
+      <Link to="/comidas" />
+      <Link to="/explorar" />
     </footer>
   );
 }
