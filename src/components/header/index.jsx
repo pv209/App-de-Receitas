@@ -1,14 +1,19 @@
 import React from 'react';
-import Button from '../shared/button/index';
+import { string } from 'prop-types';
+import ProfileIcon from '../../images/profileIcon.svg';
+import SearchIcon from '../../images/searchIcon.svg';
 
-function index() {
+function Header({ pageTitle }) {
   return (
     <div>
-      <Button dataTestid="profile-top-btn" type="button" name="profile" />
-      <h1 data-testid="page-title">App Receitas</h1>
-      <Button dataTestid="search-top-btn" type="button" name="search" />
+      <img src={ ProfileIcon } alt="profile-icon" data-testid="profile-top-btn" />
+      <h1 data-testid="page-title">{pageTitle}</h1>
+      <img src={ SearchIcon } alt="search-icon" data-testid="search-top-btn" />
     </div>
   );
 }
 
-export default index;
+Header.propTypes = {
+  pageTitle: string.isRequired,
+};
+export default Header;
