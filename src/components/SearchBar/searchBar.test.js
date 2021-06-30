@@ -19,8 +19,8 @@ const renderPath = (path) => {
 };
 
 describe('Test para o Search Bar', () => {
-  it('', () => {
-    const { getByTestId } = renderPath('/comidas');
+  it('Testando se os campos aparecem na tela', () => {
+    const { getByTestId, getAllByRole } = renderPath('/comidas');
 
     expect(getByTestId('search-input')).toBeInTheDocument();
     expect(getByTestId('exec-search-btn')).toBeInTheDocument();
