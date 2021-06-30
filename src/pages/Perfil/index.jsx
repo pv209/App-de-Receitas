@@ -1,9 +1,10 @@
 import React from 'react';
+import Header from '../../components/header';
 
 function index() {
   return (
     <div>
-      <span data-testid="perfil">Perfil</span>
+      <Header pageTitle="Perfil" />
     </div>
   );
 }

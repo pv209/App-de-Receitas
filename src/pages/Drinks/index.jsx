@@ -1,13 +1,13 @@
 import React from 'react';
 import Header from '../../components/header';
 
-function index() {
+function Drinks() {
   return (
     <div>
       <Header pageTitle="Bebidas" />
-      <span>Food</span>
+      <span>drinks</span>
     </div>
   );
 }
 
-export default index;
+export default Drinks;

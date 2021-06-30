@@ -3,7 +3,7 @@ import React from 'react';
 function SearchBar() {
   return (
     <div>
-      <span data-testid="searchBar">searchBar</span>
+      <span data-testid="search-input">searchBar</span>
     </div>
   );
 }

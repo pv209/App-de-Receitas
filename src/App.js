@@ -3,6 +3,8 @@ import { Switch, Route } from 'react-router-dom';
 
 import NotFound from './pages/NotFound';
 import Perfil from './pages/Perfil/index';
+import Foods from './pages/Foods/index';
+import Drinks from './pages/Drinks';
 
 /*
 import Login from './pages/Login';
@@ -18,8 +20,8 @@ function App() {
   return (
     <Switch>
       <Route exact path="/" component={ NotFound } />
-      <Route path="/comidas" component={ NotFound } />
-      <Route path="/bedidas" component={ NotFound } />
+      <Route exact path="/comidas" component={ Foods } />
+      <Route exact path="/bebidas" component={ Drinks } />
       <Route path="/comidas/:id" component={ NotFound } />
       <Route path="/bedidas/:id" component={ NotFound } />
       <Route path="/comidas/:id/in-progress" component={ NotFound } />
