@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Input from '../input';
-import Button from '../button';
+import Input from '../shared/input';
+import Button from '../shared/button';
 import {
   propsSearchFirstLetter,
   propsSearchIngredients,

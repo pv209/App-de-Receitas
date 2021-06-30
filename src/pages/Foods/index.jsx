@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchBar from '../../components/shared/SearchBar';
+import SearchBar from '../../components/SearchBar';
 
 function Foods() {
   return (
