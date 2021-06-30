@@ -18,11 +18,11 @@ function App() {
     <Switch>
       <Route exact path="/" component={ NotFound } />
       <Route path="/comidas" component={ NotFound } />
-      <Route path="/bedidas" component={ NotFound } />
+      <Route path="/bebidas" component={ NotFound } />
       <Route path="/comidas/:id" component={ NotFound } />
-      <Route path="/bedidas/:id" component={ NotFound } />
+      <Route path="/bebidas/:id" component={ NotFound } />
       <Route path="/comidas/:id/in-progress" component={ NotFound } />
-      <Route path="/bedidas/:id/in-progress" component={ NotFound } />
+      <Route path="/bebidas/:id/in-progress" component={ NotFound } />
       <Route path="/explorar" component={ NotFound } />
       <Route path="/explorar/comidas" component={ NotFound } />
       <Route path="/explorar/bebidas" component={ NotFound } />
