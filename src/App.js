@@ -3,13 +3,11 @@ import { Switch, Route } from 'react-router-dom';
 
 import NotFound from './pages/NotFound';
 
-/*
-import Login from './pages/Login';
+// import Login from './pages/Login';
 import Foods from './pages/Foods';
-import Drinks from './pages/Drinks';
-import Perfil from './pages/Perfil';
-import Explore from './pages/Explore';
- */
+// import Drinks from './pages/Drinks';
+// import Perfil from './pages/Perfil';
+// import Explore from './pages/Explore';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -17,7 +15,7 @@ function App() {
   return (
     <Switch>
       <Route exact path="/" component={ NotFound } />
-      <Route path="/comidas" component={ NotFound } />
+      <Route path="/comidas" component={ Foods } />
       <Route path="/bedidas" component={ NotFound } />
       <Route path="/comidas/:id" component={ NotFound } />
       <Route path="/bedidas/:id" component={ NotFound } />

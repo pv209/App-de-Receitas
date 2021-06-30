@@ -20,11 +20,12 @@ Input.propTypes = {
   dataTestid: string,
   placeholder: string.isRequired,
   ariaLabel: string.isRequired,
-  required: bool.isRequired,
+  required: bool,
 };
 
 Input.defaultProps = {
   dataTestid: '',
+  required: false,
 };
 
 export default Input;
