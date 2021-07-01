@@ -24,7 +24,6 @@ function Input({ onChange, id, name, type, textLabel,
     <input
       name={ name }
       type={ type }
-      id={ id }
       data-testid={ dataTestid }
       placeholder={ placeholder }
       aria-label={ ariaLabel }
