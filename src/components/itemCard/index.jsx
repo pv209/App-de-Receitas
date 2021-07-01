@@ -5,7 +5,7 @@ function ItemCard({ name, image, dataTestId }) {
   console.log(dataTestId);
   return (
     <div data-testid={ `${dataTestId}-recipe-card` }>
-      <h2 data-testid={`${dataTestId}-card-name`}>{name}</h2>
+      <h2 data-testid={ `${dataTestId}-card-name` }>{name}</h2>
       <img data-testid={ `${dataTestId}-card-img` } src={ image } alt={ name } />
     </div>
   );
