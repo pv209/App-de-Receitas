@@ -6,6 +6,7 @@ import NotFound from './pages/NotFound';
 // import Login from './pages/Login';
 import Foods from './pages/Foods';
 import Drinks from './pages/Drinks';
+import Details from './pages/Details';
 // import Perfil from './pages/Perfil';
 // import Explore from './pages/Explore';
 
@@ -16,10 +17,10 @@ function App() {
     <Switch>
       <Route exact path="/" component={ NotFound } />
       <Route path="/comidas/:id/in-progress" component={ NotFound } />
-      <Route path="/comidas/:id" component={ NotFound } />
+      <Route path="/comidas/:id" component={ Details } />
       <Route path="/comidas" component={ Foods } />
       <Route path="/bebidas/:id/in-progress" component={ NotFound } />
-      <Route path="/bebidas/:id" component={ NotFound } />
+      <Route path="/bebidas/:id" component={ Details } />
       <Route path="/bebidas" component={ Drinks } />
       <Route path="/explorar" component={ NotFound } />
       <Route path="/explorar/comidas" component={ NotFound } />

@@ -5,8 +5,8 @@ import RecipesContext from './recipesContext';
 import { filterMethodFoods, filterMethodDrinks } from '../../utils/functions';
 
 function RecipesProvider({ children }) {
-  const [foods, setFoods] = useState([]);
-  const [drinks, setDrinks] = useState([]);
+  const [recipes, setRecipes] = useState([]);
+  const [typeFilter, setTypeFilter] = useState('');
 
   async function getSubmitApiFoods(text, ingredients, name, firtsLetter) {
     const requestApi = filterMethodFoods(text, ingredients, name, firtsLetter);
@@ -15,8 +15,8 @@ function RecipesProvider({ children }) {
     }
     if (text) {
       const data = await requestApi.get(text);
-      console.log(data);
-      setFoods(data.meals);
+      setRecipes(data.meals);
+      setTypeFilter('meals');
     }
   }
 
@@ -27,14 +27,14 @@ function RecipesProvider({ children }) {
     }
     if (text) {
       const data = await requestApi.get(text);
-      console.log(data);
-      setDrinks(data.meals);
+      setRecipes(data.drinks);
+      setTypeFilter('drinks');
     }
   }
 
   const stateRecipes = {
-    foods,
-    drinks,
+    recipes,
+    typeFilter,
     getSubmitApiDrinks,
     getSubmitApiFoods,
   };

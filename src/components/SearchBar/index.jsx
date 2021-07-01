@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { shape, string } from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
 import Input from '../shared/input';
 import Button from '../shared/button';
@@ -16,7 +17,12 @@ function SearchBar({ location }) {
   const [searchIngredients, setSearchIngredients] = useState(false);
   const [searchName, setSearchName] = useState(false);
   const [searchFirstLetter, setSearchFirstLetter] = useState(false);
-  const { getSubmitApiFoods, getSubmitApiDrinks } = useContext(recipesContext);
+  const {
+    getSubmitApiFoods,
+    getSubmitApiDrinks,
+    recipes,
+    typeFilter,
+  } = useContext(recipesContext);
 
   function handleClick() {
     const { pathname } = location;
@@ -32,6 +38,13 @@ function SearchBar({ location }) {
     } else {
       getSubmitApiDrinks(...propsFunc);
     }
+  }
+
+  if (recipes && recipes.length === 1) {
+    if (typeFilter === 'meals') {
+      return <Redirect to={ `/comidas/${recipes[0].idMeal}` } />;
+    }
+    return <Redirect to={ `/bebidas/${recipes[0].idDrink}` } />;
   }
 
   return (
