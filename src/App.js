@@ -1,10 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import NotFound from './pages/NotFound';
-import Perfil from './pages/Perfil/index';
-import Foods from './pages/Foods/index';
-import Drinks from './pages/Drinks';
 
 /*
 import Login from './pages/Login';
@@ -13,17 +9,26 @@ import Drinks from './pages/Drinks';
 // import Perfil from './pages/Perfil';
 import Explore from './pages/Explore';
  */
+import Foods from './pages/Foods';
+import Drinks from './pages/Drinks';
+import Explorer from './pages/Explorer';
+import ExplorerFoods from './pages/ExplorerFoods';
+import ExplorerDrinks from './pages/ExplorerDrinks';
+import ExplorerFoodsIngredients from './pages/ExplorerFoodsIngredients';
+import ExplorerDrinksIngredients from './pages/ExplorerDrinksIngredients';
+import ExplorerFoodsLocal from './pages/ExplorerFoodsLocal';
+import Perfil from './pages/Perfil';
+import NotFound from './pages/NotFound';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles/global.css';
 
 function App() {
   return (
     <Switch>
       <Route exact path="/" component={ NotFound } />
-      <Route exact path="/comidas" component={ Foods } />
-      <Route exact path="/bebidas" component={ Drinks } />
       <Route path="/comidas/:id" component={ NotFound } />
-      <Route path="/bedidas/:id" component={ NotFound } />
+      <Route path="/bebidas/:id" component={ NotFound } />
       <Route path="/comidas/:id/in-progress" component={ NotFound } />
       <Route path="/bedidas/:id/in-progress" component={ NotFound } />
       <Route path="/explorar" component={ NotFound } />
