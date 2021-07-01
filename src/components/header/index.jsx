@@ -10,6 +10,5 @@ function index() {
     </div>
   );
 }
-//a
 
 export default index;
