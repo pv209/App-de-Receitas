@@ -13,6 +13,7 @@ import Explore from './pages/Explore';
  */
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles/global.css';
 
 function App() {
   return (
