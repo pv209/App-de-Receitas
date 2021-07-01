@@ -3,6 +3,7 @@ import Input from '../shared/input';
 import Button from '../shared/button';
 import { propsButton, propsEmailInput, propsPasswordInput } from './data';
 import { emailVerification, passwordVerification } from '../../utils/validations';
+import handleSubmit from '../../utils/setTokens';
 
 export default function LoginForm() {
   const [buttonDisable, setButtonDisable] = useState(true);
@@ -28,7 +29,7 @@ export default function LoginForm() {
         { ...propsPasswordInput }
         onChange={ (event) => handleChange(event, setPassword) }
       />
-      <Button { ...propsButton } disabled={ buttonDisable } />
+      <Button { ...propsButton } disabled={ buttonDisable } onClick={ handleSubmit } />
     </form>
   );
 }
