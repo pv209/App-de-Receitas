@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import { element } from 'prop-types';
 
 import RecipesContext from './recipesContext';
-import { filterMethodFoods, filterMethodDrinks } from '../../utils/functions';
+import {
+  filterMethodFoods,
+  filterMethodDrinks,
+  alertRequestApi,
+} from '../../utils/functions';
 
 function RecipesProvider({ children }) {
   const [recipes, setRecipes] = useState([]);
@@ -15,6 +19,7 @@ function RecipesProvider({ children }) {
     }
     if (text) {
       const data = await requestApi.get(text);
+      if (!data.meals) return alertRequestApi('Comida');
       setTypeFilter('Meal');
       setRecipes(data.meals);
     }
@@ -27,6 +32,7 @@ function RecipesProvider({ children }) {
     }
     if (text) {
       const data = await requestApi.get(text);
+      if (!data.drinks) return alertRequestApi('Bebida');
       setTypeFilter('Drink');
       setRecipes(data.drinks);
     }
