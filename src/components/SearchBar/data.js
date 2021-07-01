@@ -1,6 +1,7 @@
 export const propsSearchText = {
   type: 'text',
   name: 'searchText',
+  id: 'searchText',
   placeholder: 'Pesquisar',
   ariaLabel: 'Campo de pesquisa',
   dataTestid: 'search-input',
@@ -8,24 +9,30 @@ export const propsSearchText = {
 
 export const propsSearchIngredients = {
   type: 'radio',
-  name: 'searchIngredients',
+  name: 'search',
+  id: 'searchIngredients',
+  inputLabel: true,
+  textLabel: 'Ingredientes',
   placeholder: 'Pesquisa por ingredientes',
-  ariaLabel: 'Campo de pesquisa por ingredientes',
   dataTestid: 'ingredient-search-radio',
 };
 
 export const propsSearchName = {
   type: 'radio',
-  name: 'searchName',
+  name: 'search',
+  id: 'searchName',
+  inputLabel: true,
+  textLabel: 'Name',
   placeholder: 'Pesquisa por nome',
-  ariaLabel: 'Campo de pesquisa por nome',
   dataTestid: 'name-search-radio',
 };
 
 export const propsSearchFirstLetter = {
   type: 'radio',
-  name: 'searchFirstLetter',
+  name: 'search',
+  id: 'searchFirstLetter',
+  inputLabel: true,
+  textLabel: 'Primeira Letra',
   placeholder: 'Pesquisa pela primeira letra',
-  ariaLabel: 'Campo de pesquisa pela primeira letra',
   dataTestid: 'first-letter-search-radio',
 };
