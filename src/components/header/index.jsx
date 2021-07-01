@@ -1,15 +1,42 @@
-import React from 'react';
-import Button from '../shared/button/index';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { string } from 'prop-types';
+import ProfileIcon from '../../images/profileIcon.svg';
 
-function index() {
+import SearchBar from '../searchBar/SearchBar';
+import SearchButton from '../searchButton';
+
+function Header({ pageTitle }) {
+  const [searchBar, setSearchBar] = useState(false);
+  const [searchIcon, setSearchIcon] = useState(true);
+
+  function showSearchIcon() {
+    if (pageTitle === 'Perfil') {
+      return setSearchIcon(false);
+    }
+    return setSearchIcon(true);
+  }
+  useEffect(() => {
+    showSearchIcon();
+  }, [pageTitle]);
   return (
     <div>
-      <Button dataTestid="profile-top-btn" type="button" name="profile" />
-      <h1 data-testid="page-title">App Receitas</h1>
-      <Button dataTestid="search-top-btn" type="button" name="search" />
+      <Link to="/perfil">
+        <img src={ ProfileIcon } alt="profile-icon" data-testid="profile-top-btn" />
+      </Link>
+      <h1 data-testid="page-title">{pageTitle}</h1>
+      {searchIcon ? <SearchButton setSearchBar={ setSearchBar } /> : null }
+      {searchBar ? <SearchBar /> : null}
+
     </div>
   );
 }
 
 
-export default index;
+Header.propTypes = {
+  pageTitle: string.isRequired,
+};
+export default Header;
+
+
+
