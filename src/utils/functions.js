@@ -1,17 +1,28 @@
 import {
-  getRecipesByFirstLetter,
-  getRecipesByName,
-  getRecipesByIngredients,
+  getFoodsByFirstLetter,
+  getFoodsByName,
+  getFoodsByIngredients,
+  getDinksByName,
+  getDrinksByFirstLetter,
+  getDrinksByIngredients,
 } from '../service/recipesApi';
 
-function filterMethod(text, ingredients, name, firstLetter) {
-  if (ingredients) return { get: getRecipesByIngredients };
-  if (name) return { get: getRecipesByName };
+export function filterMethodFoods(text, ingredients, name, firstLetter) {
+  if (ingredients) return { get: getFoodsByIngredients };
+  if (name) return { get: getFoodsByName };
   if (firstLetter) {
     const validFirstLetter = text.length !== 1;
-    return { get: getRecipesByFirstLetter, validFirstLetter };
+    return { get: getFoodsByFirstLetter, validFirstLetter };
   }
   return console.log('Deu ruim');
 }
 
-export default filterMethod;
+export function filterMethodDrinks(text, ingredients, name, firstLetter) {
+  if (ingredients) return { get: getDrinksByIngredients };
+  if (name) return { get: getDinksByName };
+  if (firstLetter) {
+    const validFirstLetter = text.length !== 1;
+    return { get: getDrinksByFirstLetter, validFirstLetter };
+  }
+  return console.log('Deu ruim');
+}

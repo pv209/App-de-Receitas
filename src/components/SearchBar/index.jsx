@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { shape, string } from 'prop-types';
 
 import Input from '../shared/input';
 import Button from '../shared/button';
@@ -10,12 +11,28 @@ import {
 } from './data';
 import recipesContext from '../../context/recipesContext/recipesContext';
 
-function SearchBar() {
+function SearchBar({ location }) {
   const [searchText, setSearchText] = useState('');
   const [searchIngredients, setSearchIngredients] = useState(false);
   const [searchName, setSearchName] = useState(false);
   const [searchFirstLetter, setSearchFirstLetter] = useState(false);
-  const { getSubmitApi } = useContext(recipesContext);
+  const { getSubmitApiFoods, getSubmitApiDrinks } = useContext(recipesContext);
+
+  function handleClick() {
+    const { pathname } = location;
+    const propsFunc = [
+      searchText,
+      searchIngredients,
+      searchName,
+      searchFirstLetter,
+    ];
+
+    if (pathname === '/comidas') {
+      getSubmitApiFoods(...propsFunc);
+    } else {
+      getSubmitApiDrinks(...propsFunc);
+    }
+  }
 
   return (
     <section>
@@ -47,12 +64,16 @@ function SearchBar() {
         dataTestid="exec-search-btn"
         type="button"
         name="Buscar"
-        onClick={ () => {
-          getSubmitApi(searchText, searchIngredients, searchName, searchFirstLetter);
-        } }
+        onClick={ handleClick }
       />
     </section>
   );
 }
+
+SearchBar.propTypes = {
+  location: shape({
+    pathname: string,
+  }).isRequired,
+};
 
 export default SearchBar;

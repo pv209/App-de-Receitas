@@ -2,24 +2,45 @@ import React, { useState } from 'react';
 import { element } from 'prop-types';
 
 import RecipesContext from './recipesContext';
-import filterMethod from '../../utils/functions';
+import { filterMethodFoods, filterMethodDrinks } from '../../utils/functions';
 
 function RecipesProvider({ children }) {
-  const [recipes, setRecipes] = useState([]);
+  const [foods, setFoods] = useState([]);
+  const [drinks, setDrinks] = useState([]);
 
-  async function getSubmitApi(text, ingredients, name, firtsLetter) {
-    const requestApi = filterMethod(text, ingredients, name, firtsLetter);
+  async function getSubmitApiFoods(text, ingredients, name, firtsLetter) {
+    const requestApi = filterMethodFoods(text, ingredients, name, firtsLetter);
     if (requestApi.validFirstLetter) {
       return alert('Pesquisar por apenas uma letra');
     }
     if (text) {
       const data = await requestApi.get(text);
-      setRecipes(data.meals);
+      console.log(data);
+      setFoods(data.meals);
     }
   }
 
+  async function getSubmitApiDrinks(text, ingredients, name, firtsLetter) {
+    const requestApi = filterMethodDrinks(text, ingredients, name, firtsLetter);
+    if (requestApi.validFirstLetter) {
+      return alert('Pesquisar por apenas uma letra');
+    }
+    if (text) {
+      const data = await requestApi.get(text);
+      console.log(data);
+      setDrinks(data.meals);
+    }
+  }
+
+  const stateRecipes = {
+    foods,
+    drinks,
+    getSubmitApiDrinks,
+    getSubmitApiFoods,
+  };
+
   return (
-    <RecipesContext.Provider value={ { recipes, getSubmitApi } }>
+    <RecipesContext.Provider value={ { ...stateRecipes } }>
       {children}
     </RecipesContext.Provider>
   );
