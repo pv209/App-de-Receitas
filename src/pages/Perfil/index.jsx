@@ -3,12 +3,14 @@ import Footer from '../../components/footer';
 import Button from '../../components/shared/button';
 
 function Perfil() {
+  const storage = localStorage.getItem('user');
+  const { email } = storage ? JSON.parse(storage) : '@gmail.com';
   return (
     <>
       <span
         data-testid="profile-email"
       >
-        NeymarJunior@gmail.com
+        {email !== '' ? email : 'NeymarJunior@gmail.com'}
       </span>
       <Button
         dataTestid="profile-done-btn"
