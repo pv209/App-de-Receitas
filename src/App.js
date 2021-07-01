@@ -12,11 +12,12 @@ import Explore from './pages/Explore';
  */
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Login from './pages/Login';
 
 function App() {
   return (
     <Switch>
-      <Route exact path="/" component={ NotFound } />
+      <Route exact path="/" component={ Login } />
       <Route path="/comidas" component={ NotFound } />
       <Route path="/bedidas" component={ NotFound } />
       <Route path="/comidas/:id" component={ NotFound } />
