@@ -15,8 +15,8 @@ function RecipesProvider({ children }) {
     }
     if (text) {
       const data = await requestApi.get(text);
+      setTypeFilter('Meal');
       setRecipes(data.meals);
-      setTypeFilter('meals');
     }
   }
 
@@ -27,8 +27,8 @@ function RecipesProvider({ children }) {
     }
     if (text) {
       const data = await requestApi.get(text);
+      setTypeFilter('Drink');
       setRecipes(data.drinks);
-      setTypeFilter('drinks');
     }
   }
 
