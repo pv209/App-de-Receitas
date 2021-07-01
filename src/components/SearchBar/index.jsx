@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 
 import Input from '../shared/input';
 import Button from '../shared/button';
+import CardRecipe from '../CardRecipe';
 import {
   propsSearchFirstLetter,
   propsSearchIngredients,
@@ -11,6 +12,8 @@ import {
   propsSearchText,
 } from './data';
 import recipesContext from '../../context/recipesContext/recipesContext';
+
+const LIMIT_RECIPES = 11;
 
 function SearchBar({ location }) {
   const [searchText, setSearchText] = useState('');
@@ -41,7 +44,7 @@ function SearchBar({ location }) {
   }
 
   if (recipes && recipes.length === 1) {
-    if (typeFilter === 'meals') {
+    if (typeFilter === 'Meal') {
       return <Redirect to={ `/comidas/${recipes[0].idMeal}` } />;
     }
     return <Redirect to={ `/bebidas/${recipes[0].idDrink}` } />;
@@ -79,6 +82,15 @@ function SearchBar({ location }) {
         name="Buscar"
         onClick={ handleClick }
       />
+      {recipes.filter((item, index) => index <= LIMIT_RECIPES)
+        .map((recipe, index) => (
+          <CardRecipe
+            typeFilter={ typeFilter }
+            key={ index }
+            index={ index + 1 }
+            recipe={ recipe }
+          />
+        ))}
     </section>
   );
 }
