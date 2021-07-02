@@ -10,14 +10,12 @@ import DrinkProvider from './context/drinkContext/drinkProvider';
 
 import Login from './pages/Login';
 
-// import Explore from './pages/Explore';
-
-// import Explorer from './pages/Explorer';
-// import ExplorerFoods from './pages/ExplorerFoods';
-// import ExplorerDrinks from './pages/ExplorerDrinks';
-// import ExplorerFoodsIngredients from './pages/ExplorerFoodsIngredients';
-// import ExplorerDrinksIngredients from './pages/ExplorerDrinksIngredients';
-// import ExplorerFoodsLocal from './pages/ExplorerFoodsLocal';
+import Explorer from './pages/Explorer';
+import ExplorerFoods from './pages/ExplorerFoods';
+import ExplorerDrinks from './pages/ExplorerDrinks';
+import ExplorerFoodsIngredients from './pages/ExplorerFoodsIngredients';
+import ExplorerDrinksIngredients from './pages/ExplorerDrinksIngredients';
+import ExplorerFoodsLocal from './pages/ExplorerFoodsLocal';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
