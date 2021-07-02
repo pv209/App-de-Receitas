@@ -39,3 +39,10 @@ export async function getDrinksByIngredients(ingredients) {
   const data = await request.json();
   return data;
 }
+
+export async function getRecipeById(id) {
+  const URL = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
+  const request = await fetch(URL);
+  const data = await request.json();
+  return data;
+}
