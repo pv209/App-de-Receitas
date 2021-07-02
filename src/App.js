@@ -12,6 +12,7 @@ import ExplorerFoodsLocal from './pages/ExplorerFoodsLocal';
 import Perfil from './pages/Perfil';
 import NotFound from './pages/NotFound';
 import Details from './pages/Details';
+import RecipesFavorite from './pages/RecipesFavorite';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/global.css';
@@ -40,7 +41,7 @@ function App() {
       <Route path="/explorar/comidas/area" component={ ExplorerFoodsLocal } />
       <Route path="/perfil" component={ Perfil } />
       <Route path="/receitas-feitas" component={ NotFound } />
-      <Route path="/receitas-favoritas" component={ NotFound } />
+      <Route path="/receitas-favoritas" component={ RecipesFavorite } />
     </Switch>
   );
 }
