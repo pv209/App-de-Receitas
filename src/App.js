@@ -43,6 +43,7 @@ function App() {
       <Route path="/receitas-feitas" component={ NotFound } />
       <Route path="/receitas-favoritas" component={ NotFound } />
     </Switch>
+
   );
 }
 
