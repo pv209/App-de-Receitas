@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import Header from '../../components/header/index';
 import DrinkContext from '../../context/drinkContext/drinkContext';
 import ItemCard from '../../components/itemCard';
+import Footer from '../../components/footer';
 
 function Drinks() {
   const { fetchDrink, data, loading } = useContext(DrinkContext);
@@ -20,6 +21,7 @@ function Drinks() {
           dataTestId={ index }
         />
       ))}
+      <Footer />
     </div>
   );
 }
