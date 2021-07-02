@@ -15,12 +15,14 @@ import Details from './pages/Details';
 import RecipesFavorite from './pages/RecipesFavorite';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+import Login from './pages/Login';
 import './styles/global.css';
 
 function App() {
   return (
     <Switch>
-      <Route exact path="/" component={ NotFound } />
+      <Route exact path="/" component={ Login } />
       <Route path="/comidas/:id/in-progress" component={ NotFound } />
       <Route path="/comidas/:id" component={ Details } />
       <Route path="/comidas" component={ Foods } />
