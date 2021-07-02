@@ -13,12 +13,14 @@ import Perfil from './pages/Perfil';
 import NotFound from './pages/NotFound';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+import Login from './pages/Login';
 import './styles/global.css';
 
 function App() {
   return (
     <Switch>
-      <Route exact path="/" component={ NotFound } />
+      <Route exact path="/" component={ Login } />
       <Route path="/comidas" component={ Foods } />
       <Route path="/bebidas" component={ Drinks } />
       <Route path="/comidas/:id" component={ NotFound } />
