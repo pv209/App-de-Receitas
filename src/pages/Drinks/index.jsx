@@ -7,6 +7,7 @@ import RecipesProvider from '../../context/recipesContext/recipesProvider';
 function Drinks({ location }) {
   return (
     <RecipesProvider>
+      <button type="button" data-testid="search-top-btn">Search</button>
       <SearchBar location={ location } />
       <p>Bebidas</p>
     </RecipesProvider>

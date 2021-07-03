@@ -87,7 +87,7 @@ function SearchBar({ location }) {
           <CardRecipe
             typeFilter={ typeFilter }
             key={ index }
-            index={ index + 1 }
+            index={ index }
             recipe={ recipe }
           />
         ))}
