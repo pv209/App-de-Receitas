@@ -8,7 +8,6 @@ function Button({ dataTestid, name, type, disabled, onClick }) {
       disabled={ disabled }
       onClick={ onClick }
       type={ type === 'submit' ? 'submit' : 'button' }
-      onClick={ onClick }
     >
       {name}
     </button>
