@@ -1,7 +1,9 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
+import Food from './pages/Food';
 import Foods from './pages/Foods';
+import Drink from './pages/Drink';
 import Drinks from './pages/Drinks';
 import Explorer from './pages/Explorer';
 import ExplorerFoods from './pages/ExplorerFoods';
@@ -13,16 +15,17 @@ import Perfil from './pages/Perfil';
 import NotFound from './pages/NotFound';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'swiper/swiper.min.css';
 import './styles/global.css';
 
 function App() {
   return (
     <Switch>
       <Route exact path="/" component={ NotFound } />
+      <Route path="/comidas/:id" component={ Food } />
+      <Route path="/bebidas/:id" component={ Drink } />
       <Route path="/comidas" component={ Foods } />
       <Route path="/bebidas" component={ Drinks } />
-      <Route path="/comidas/:id" component={ NotFound } />
-      <Route path="/bebidas/:id" component={ NotFound } />
       <Route path="/comidas/:id/in-progress" component={ NotFound } />
       <Route path="/bebidas/:id/in-progress" component={ NotFound } />
       <Route path="/explorar" component={ Explorer } />
