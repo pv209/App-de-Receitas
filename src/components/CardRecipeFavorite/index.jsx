@@ -4,7 +4,7 @@ import copy from 'clipboard-copy';
 import shareIcon from '../../images/shareIcon.svg';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
 
-function CardRecipeFavorite({ index, recipe }) {
+function CardRecipeFavorite({ index, recipe, handleClickFilter }) {
   const { id, image, name, category, area, alcoholicOrNot, type } = recipe;
   const [linkCopy, setLinkCopy] = useState(false);
 
@@ -31,7 +31,7 @@ function CardRecipeFavorite({ index, recipe }) {
             alt="Compartilhar"
           />
         </button>
-        <button type="button">
+        <button onClick={ () => handleClickFilter(id) } type="button">
           <img
             data-testid={ `${index}-horizontal-favorite-btn` }
             src={ blackHeartIcon }
@@ -61,7 +61,7 @@ function CardRecipeFavorite({ index, recipe }) {
             alt="Compartilhar"
           />
         </button>
-        <button type="button">
+        <button onClick={ () => handleClickFilter(id) } type="button">
           <img
             data-testid={ `${index}-horizontal-favorite-btn` }
             src={ blackHeartIcon }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../../components/shared/button';
 import CardRecipeFavorite from '../../components/CardRecipeFavorite';
 
@@ -14,8 +14,15 @@ const data = [{
 
 function RecipesFavorite() {
   const storage = localStorage.getItem('favoriteRecipes');
-  // const { favoriteRecipes } = storage ? JSON.parse(storage) : data;
   const favoriteRecipes = storage ? JSON.parse(storage) : data;
+  const [filterStorage, setFilterStorage] = useState(favoriteRecipes);
+
+  function handleClickFilter(propsId) {
+    const newFilterStorage = filterStorage.filter(({ id }) => id !== propsId);
+    setFilterStorage(newFilterStorage);
+    localStorage.setItem('favoriteRecipes', JSON.stringify(newFilterStorage));
+  }
+
   return (
     <section>
       <Button
@@ -33,8 +40,9 @@ function RecipesFavorite() {
         dataTestid="filter-by-drink-btn"
         name="Drinks"
       />
-      {favoriteRecipes.map((recipe, index) => (
+      {filterStorage.map((recipe, index) => (
         <CardRecipeFavorite
+          handleClickFilter={ handleClickFilter }
           key={ index }
           index={ index }
           recipe={ recipe }
