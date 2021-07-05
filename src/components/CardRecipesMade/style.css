@@ -1,0 +1,32 @@
+.card-recipes-made-container {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.card-recipes-made-container img {
+  margin-right: 0.5rem;
+  width: 150px;
+}
+
+.card-recipes-made-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.area-category, .alcoholicOrNot {
+  font-size: 15px;
+  color: #C4C4C4;
+  margin-right: 10px;
+}
+
+.tags-container {
+  margin-top: 10px;
+}
+
+.tags {
+  background-color: #C4C4C4;
+  border-radius: 10px;
+  margin-right: 5px;
+  padding: 5px;
+}

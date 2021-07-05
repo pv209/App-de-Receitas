@@ -16,6 +16,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Login from './pages/Login';
 import './styles/global.css';
+import RecipesMade from './pages/RecipesMade/RecipesMade';
 
 function App() {
   return (
@@ -40,7 +41,7 @@ function App() {
       />
       <Route path="/explorar/comidas/area" component={ ExplorerFoodsLocal } />
       <Route path="/perfil" component={ Perfil } />
-      <Route path="/receitas-feitas" component={ NotFound } />
+      <Route path="/receitas-feitas" component={ RecipesMade } />
       <Route path="/receitas-favoritas" component={ NotFound } />
     </Switch>
 

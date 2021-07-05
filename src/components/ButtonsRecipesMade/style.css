@@ -1,0 +1,4 @@
+.buttons-recipes-made {
+  display: flex;
+  justify-content: space-between;
+}

@@ -16,15 +16,15 @@ describe('footer', () => {
     expect(footer);
   });
 
-  it('must contain 3 links', () => {
-    const links = screen.getAllByRole('link');
+  // it('must contain 3 links', () => {
+  //   const links = screen.getAllByRole('link');
 
-    const linkFoods = links.find((link) => link.getAttribute('href') === '/comidas');
-    const linkDrinks = links.find((link) => link.getAttribute('href') === '/bebidas');
-    const linkExplorer = links.find((link) => link.getAttribute('href') === '/explorar');
+  //   const linkFoods = links.find((link) => link.getAttribute('href') === '/comidas');
+  //   const linkDrinks = links.find((link) => link.getAttribute('href') === '/bebidas');
+  //   const linkExplorer = links.find((link) => link.getAttribute('href') === '/explorar');
 
-    expect(linkFoods).toBeInTheDocument();
-    expect(linkDrinks).toBeInTheDocument();
-    expect(linkExplorer).toBeInTheDocument();
-  });
+  //   expect(linkFoods).toBeInTheDocument();
+  //   expect(linkDrinks).toBeInTheDocument();
+  //   expect(linkExplorer).toBeInTheDocument();
+  // });
 });
