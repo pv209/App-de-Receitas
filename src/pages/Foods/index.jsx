@@ -1,8 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { shape } from 'prop-types';
 import Header from '../../components/header/index';
-import FoodContext from '../../context/foodContext/foodContext';
-import Itemcard from '../../components/itemCard';
 import Footer from '../../components/footer';
 import Button from '../../components/shared/button';
 
@@ -46,8 +45,12 @@ function Foods() {
         </Link>
       ))}
       <Footer />
-    </div>
+    </RecipesProvider>
   );
 }
+
+Foods.propTypes = {
+  location: shape({}).isRequired,
+};
 
 export default Foods;
