@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './style.css';
 import { array, number, string } from 'prop-types';
 import { Link } from 'react-router-dom';
+import clipboardCopy from 'clipboard-copy';
 import { ReactComponent as ShareIcon } from '../../images/shareIcon.svg';
+
+// const copya = require('clipboard-copy');
 
 export default function CardRecipesMade({
   image,
@@ -16,6 +19,8 @@ export default function CardRecipesMade({
   type,
   alcoholicOrNot,
 }) {
+  const [copy, setCopy] = useState(false);
+
   function renderTags() {
     if (tags.length === 0) {
       return '';
@@ -40,7 +45,7 @@ export default function CardRecipesMade({
     );
   }
 
-  function recipeType() {
+  function renderRecipeType() {
     if (type === 'comida') {
       return (
         <span
@@ -61,9 +66,18 @@ export default function CardRecipesMade({
     );
   }
 
+  async function copyToclipBoard() {
+    try {
+      await clipboardCopy(`http://localhost:3000/${type}s/${id}`);
+    } catch (error) {
+      console.log(error);
+    }
+    setCopy(true);
+  }
+
   return (
     <div className="card-recipes-made-container">
-      <Link to={ type === 'comida' ? `/comidas/${id}` : `/bebidas/${id}` }>
+      <Link to={ `/${type}s/${id}` }>
         <img
           src={ image }
           alt="receita"
@@ -72,22 +86,24 @@ export default function CardRecipesMade({
       </Link>
       <div className="card-recipes-made-content">
         <div>
-          {recipeType()}
+          {renderRecipeType()}
           <ShareIcon
             data-testid={ `${index}-horizontal-share-btn` }
             width="20px"
             src="shareIcon"
+            onClick={ copyToclipBoard }
           />
         </div>
-        <Link to={ type === 'comida' ? `/comidas/${id}` : `/bebidas/${id}` }>
+        <Link to={ `/${type}s/${id}` }>
           <span data-testid={ `${index}-horizontal-name` }>
             {name}
           </span>
         </Link>
         <span data-testid={ `${index}-horizontal-done-date` }>
-          {`feita em: ${doneDate}`}
+          {`Feita em: ${doneDate}`}
         </span>
         {renderTags()}
+        <span>{copy ? 'Link copiado!' : null}</span>
       </div>
     </div>
   );
