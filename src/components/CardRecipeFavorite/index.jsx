@@ -1,10 +1,17 @@
 import { number, shape, string } from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
+import copy from 'clipboard-copy';
 import shareIcon from '../../images/shareIcon.svg';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
 
 function CardRecipeFavorite({ index, recipe }) {
-  const { image, name, category, area, alcoholicOrNot, type } = recipe;
+  const { id, image, name, category, area, alcoholicOrNot, type } = recipe;
+  const [linkCopy, setLinkCopy] = useState(false);
+
+  function handleClick() {
+    copy(`http://localhost:3000/${type}s/${id}`);
+    setLinkCopy(true);
+  }
 
   function renderDrink() {
     return (
@@ -17,7 +24,7 @@ function CardRecipeFavorite({ index, recipe }) {
         />
         <p data-testid={ `${index}-horizontal-name` }>{ name }</p>
         <p data-testid={ `${index}-horizontal-top-text` }>{ alcoholicOrNot }</p>
-        <button type="button">
+        <button onClick={ handleClick } type="button">
           <img
             data-testid={ `${index}-horizontal-share-btn` }
             src={ shareIcon }
@@ -31,6 +38,7 @@ function CardRecipeFavorite({ index, recipe }) {
             alt="Favorito"
           />
         </button>
+        {linkCopy && <p>Link copiado!</p>}
       </section>
     );
   }
@@ -46,7 +54,7 @@ function CardRecipeFavorite({ index, recipe }) {
         />
         <p data-testid={ `${index}-horizontal-name` }>{ name }</p>
         <p data-testid={ `${index}-horizontal-top-text` }>{ `${area} - ${category}` }</p>
-        <button type="button">
+        <button onClick={ handleClick } type="button">
           <img
             data-testid={ `${index}-horizontal-share-btn` }
             src={ shareIcon }
@@ -60,6 +68,7 @@ function CardRecipeFavorite({ index, recipe }) {
             alt="Favorito"
           />
         </button>
+        {linkCopy && <p>Link copiado!</p>}
       </section>
     );
   }
