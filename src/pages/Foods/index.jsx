@@ -1,6 +1,6 @@
 import { shape } from 'prop-types';
 import React from 'react';
-import SearchBar from '../../components/SearchBar';
+import Header from '../../components/header/index';
 import Footer from '../../components/footer';
 
 import RecipesProvider from '../../context/recipesContext/recipesProvider';
@@ -8,8 +8,7 @@ import RecipesProvider from '../../context/recipesContext/recipesProvider';
 function Foods({ location }) {
   return (
     <RecipesProvider>
-      <button type="button" data-testid="search-top-btn">Search</button>
-      <SearchBar location={ location } />
+      <Header location={ location } pageTitle="Comidas" />
       <p>Comidas</p>
       <Footer />
     </RecipesProvider>
