@@ -4,7 +4,7 @@ import CardRecipeFavorite from '../../components/CardRecipeFavorite';
 
 const data = [{
   id: 11007,
-  type: 'Cocktail glass',
+  type: 'comida',
   area: 'Italian',
   category: 'Vegetarian',
   alcoholicOrNot: 'Alcoholic',
@@ -33,13 +33,13 @@ function RecipesFavorite() {
         dataTestid="filter-by-drink-btn"
         name="Drinks"
       />
-      {favoriteRecipes !== '' ? favoriteRecipes.map((recipe, index) => (
+      {favoriteRecipes.map((recipe, index) => (
         <CardRecipeFavorite
           key={ index }
           index={ index }
           recipe={ recipe }
         />
-      )) : <p>Loading...</p>}
+      ))}
     </section>
   );
 }

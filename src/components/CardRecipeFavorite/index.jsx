@@ -1,45 +1,69 @@
 import { number, shape, string } from 'prop-types';
-import React, { useEffect, useState } from 'react';
-import { getRecipeById } from '../../service/recipesApi';
-import Button from '../shared/button';
-import { ReactComponent as ShareIcon } from '../../images/shareIcon.svg';
-import { ReactComponent as BlackHeartIcon } from '../../images/blackHeartIcon.svg';
+import React from 'react';
+// import { getRecipeById } from '../../service/recipesApi';
+// import Button from '../shared/button';
+import shareIcon from '../../images/shareIcon.svg';
+import blackHeartIcon from '../../images/blackHeartIcon.svg';
 
 function CardRecipeFavorite({ index, recipe }) {
-  const [recipeFavorite, setRecipeFavorite] = useState({});
-  const { id, image, name, category, area } = recipe;
+  // const [recipeFavorite, setRecipeFavorite] = useState({});
+  const { image, name, category, area, alcoholicOrNot, type } = recipe;
 
-  useEffect(() => {
-    async function fetchApi() {
-      const data = await getRecipeById(id);
-      setRecipeFavorite(data);
-    }
-    fetchApi();
-  });
+  // useEffect(() => {
+  //   async function fetchApi() {
+  //     const data = await getRecipeById(id);
+  //     setRecipeFavorite(data);
+  //   }
+  //   fetchApi();
+  // });
 
-  const { strTags } = recipeFavorite || { strTags: '' };
-  console.log(strTags);
+  // const { strTags } = recipeFavorite || { strTags: '' };
+  // console.log(strTags);
+
+  function renderDrink() {
+    return (
+      <section>
+        <img
+          width="200"
+          data-testid={ `${index}-horizontal-image` }
+          src={ image }
+          alt={ name }
+        />
+        <p data-testid={ `${index}-horizontal-name` }>{ name }</p>
+        <p data-testid={ `${index}-horizontal-alcoholic` }>{ alcoholicOrNot }</p>
+        <p data-testid={ `${index}-horizontal-share-btn` } type="button">
+          <img src={ shareIcon } alt="Compartilhar" />
+        </p>
+        <p data-testid={ `${index}-horizontal-favorite-btn` } type="button">
+          <img src={ blackHeartIcon } alt="Favorito" />
+        </p>
+      </section>
+    );
+  }
+
+  function renderFood() {
+    return (
+      <section>
+        <img
+          width="200"
+          data-testid={ `${index}-horizontal-image` }
+          src={ image }
+          alt={ name }
+        />
+        <p data-testid={ `${index}-horizontal-name` }>{ name }</p>
+        <p data-testid={ `${index}-horizontal-top-text` }>{ `${area} - ${category}` }</p>
+        <p data-testid={ `${index}-horizontal-share-btn` } type="button">
+          <img src={ shareIcon } alt="Compartilhar" />
+        </p>
+        <p data-testid={ `${index}-horizontal-favorite-btn` } type="button">
+          <img src={ blackHeartIcon } alt="Favorito" />
+        </p>
+      </section>
+    );
+  }
 
   return (
-    <section>
-      <img
-        width="200"
-        data-testid={ `${index}-horizontal-image` }
-        src={ image }
-        alt={ name }
-      />
-      <p data-testid={ `${index}-horizontal-name` }>{ name }</p>
-      <p data-testid={ `${index}-horizontal-top-text` }>{ category }</p>
-      <p data-testid={ `${index}-horizontal-done-date` }>{ area }</p>
-      <Button
-        dataTestid={ `${index}-horizontal-share-btn` }
-        name={ <ShareIcon /> }
-      />
-      <Button
-        dataTestid={ `${index}-horizontal-favorite-btn` }
-        name={ <BlackHeartIcon /> }
-      />
-    </section>
+    type === 'comida' ? renderFood() : renderDrink()
   );
 }
 
