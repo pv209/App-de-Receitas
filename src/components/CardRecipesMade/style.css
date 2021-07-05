@@ -15,8 +15,8 @@
 }
 
 .area-category, .alcoholicOrNot {
+  color: #c4c4c4;
   font-size: 15px;
-  color: #C4C4C4;
   margin-right: 10px;
 }
 
@@ -25,7 +25,7 @@
 }
 
 .tags {
-  background-color: #C4C4C4;
+  background-color: #c4c4c4;
   border-radius: 10px;
   margin-right: 5px;
   padding: 5px;
