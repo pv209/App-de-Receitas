@@ -5,8 +5,8 @@ import CardRecipeFavorite from '../../components/CardRecipeFavorite';
 const data = [{
   id: 11007,
   type: 'Cocktail glass',
-  area: '',
-  category: 'strCategory',
+  area: 'Italian',
+  category: 'Vegetarian',
   alcoholicOrNot: 'Alcoholic',
   name: 'Margarita',
   image: 'https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg',
