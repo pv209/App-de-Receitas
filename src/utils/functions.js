@@ -27,6 +27,6 @@ export function filterMethodDrinks(text, ingredients, name, firstLetter) {
   return console.log('Deu ruim');
 }
 
-export function alertRequestApi(keyText) {
-  return alert(`Nenhuma ${keyText} foi encontrada`);
+export function alertRequestApi() {
+  return alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
 }

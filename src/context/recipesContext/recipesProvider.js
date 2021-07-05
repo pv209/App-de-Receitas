@@ -15,11 +15,11 @@ function RecipesProvider({ children }) {
   async function getSubmitApiFoods(text, ingredients, name, firtsLetter) {
     const requestApi = filterMethodFoods(text, ingredients, name, firtsLetter);
     if (requestApi.validFirstLetter) {
-      return alert('Pesquisar por apenas uma letra');
+      return alert('Sua busca deve conter somente 1 (um) caracter');
     }
     if (text) {
       const data = await requestApi.get(text);
-      if (!data.meals) return alertRequestApi('Comida');
+      if (!data.meals) return alertRequestApi();
       setTypeFilter('Meal');
       setRecipes(data.meals);
     }
@@ -28,11 +28,11 @@ function RecipesProvider({ children }) {
   async function getSubmitApiDrinks(text, ingredients, name, firtsLetter) {
     const requestApi = filterMethodDrinks(text, ingredients, name, firtsLetter);
     if (requestApi.validFirstLetter) {
-      return alert('Pesquisar por apenas uma letra');
+      return alert('Sua busca deve conter somente 1 (um) caracter');
     }
     if (text) {
       const data = await requestApi.get(text);
-      if (!data.drinks) return alertRequestApi('Bebida');
+      if (!data.drinks) return alertRequestApi();
       setTypeFilter('Drink');
       setRecipes(data.drinks);
     }
