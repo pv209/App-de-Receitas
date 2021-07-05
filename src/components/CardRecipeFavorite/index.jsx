@@ -15,9 +15,10 @@ function CardRecipeFavorite({ index, recipe }) {
       setRecipeFavorite(data);
     }
     fetchApi();
-  }, []);
+  });
 
   const { strTags } = recipeFavorite || { strTags: '' };
+  console.log(strTags);
 
   return (
     <section>
@@ -28,7 +29,7 @@ function CardRecipeFavorite({ index, recipe }) {
         alt={ name }
       />
       <p data-testid={ `${index}-horizontal-name` }>{ name }</p>
-      <p data-testid={ `${index}-horizontal-top-text` }>{ `${area} - ${category}` }</p>
+      <p data-testid={ `${index}-horizontal-top-text` }>{ category }</p>
       <p data-testid={ `${index}-horizontal-done-date` }>{ area }</p>
       <Button
         dataTestid={ `${index}-horizontal-share-btn` }
