@@ -8,10 +8,6 @@ function Perfil() {
   const storage = localStorage.getItem('user');
   const { email } = storage ? JSON.parse(storage) : '@gmail.com';
 
-  function resetLocalStorege() {
-    localStorage.clear();
-  }
-
   return (
     <>
       <Header pageTitle="Perfil" />
@@ -34,7 +30,7 @@ function Perfil() {
       </Link>
       <Link to="/">
         <Button
-          onClick={ resetLocalStorege }
+          onClick={ () => localStorage.clear() }
           dataTestid="profile-logout-btn"
           name="Sair"
         />
