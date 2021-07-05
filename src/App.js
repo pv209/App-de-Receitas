@@ -1,22 +1,22 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
+import NotFound from './pages/NotFound';
+import Perfil from './pages/Perfil';
 import Foods from './pages/Foods';
 import Drinks from './pages/Drinks';
+import Login from './pages/Login';
 import Explorer from './pages/Explorer';
 import ExplorerFoods from './pages/ExplorerFoods';
 import ExplorerDrinks from './pages/ExplorerDrinks';
 import ExplorerFoodsIngredients from './pages/ExplorerFoodsIngredients';
 import ExplorerDrinksIngredients from './pages/ExplorerDrinksIngredients';
 import ExplorerFoodsLocal from './pages/ExplorerFoodsLocal';
-import Perfil from './pages/Perfil';
-import NotFound from './pages/NotFound';
 import Details from './pages/Details';
 import RecipesFavorite from './pages/RecipesFavorite';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Login from './pages/Login';
 import './styles/global.css';
 
 function App() {

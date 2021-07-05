@@ -5,7 +5,6 @@ import { createBrowserHistory } from 'history';
 import userEvent from '@testing-library/user-event';
 
 // import requestApiMock from './mock';
-
 import App from '../../App';
 
 const LENGTH_INPUT_RADIO = 3;
