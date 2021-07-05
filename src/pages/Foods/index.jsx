@@ -1,30 +1,22 @@
-import React, { useContext, useEffect } from 'react';
+import { shape } from 'prop-types';
+import React from 'react';
 import Header from '../../components/header/index';
-import FoodContext from '../../context/foodContext/foodContext';
-import Itemcard from '../../components/itemCard';
 import Footer from '../../components/footer';
 
-function Foods() {
-  const { fetchFood, data, loading } = useContext(FoodContext);
+import RecipesProvider from '../../context/recipesContext/recipesProvider';
 
-  useEffect(() => {
-    fetchFood();
-    console.log(data.meal);
-  }, []);
+function Foods({ location }) {
   return (
-    <div>
-      <Header pageTitle="Comidas" />
-      { loading ? <span>carregando</span> : data.map((meal, index) => (
-        <Itemcard
-          name={ meal.strMeal }
-          image={ meal.strMealThumb }
-          key={ meal.idMeal }
-          dataTestId={ index }
-        />
-      ))}
+    <RecipesProvider>
+      <Header location={ location } pageTitle="Comidas" />
+      <p>Comidas</p>
       <Footer />
-    </div>
+    </RecipesProvider>
   );
 }
+
+Foods.propTypes = {
+  location: shape({}).isRequired,
+};
 
 export default Foods;
