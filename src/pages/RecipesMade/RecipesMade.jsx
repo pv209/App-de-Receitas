@@ -14,17 +14,6 @@ export default function RecipesMade() {
     return 'loading';
   }
 
-  // function filterDoneRecipes(buttonName) {
-  //   if (buttonName === 'Foods') {
-  //     const filteredFoods = doneRecipes.filter(({ type }) => (
-  //       type !== 'bebida'
-  //     ));
-  //     setFilterRecipes(filteredFoods);
-  //   }
-  //   if (buttonName === '') {
-  //   }
-  // }
-
   function filterFoodsRecipes() {
     const filteredFoods = doneRecipes.filter(({ type }) => (
       type !== 'bebida'
