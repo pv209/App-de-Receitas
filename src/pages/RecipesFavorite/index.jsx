@@ -29,16 +29,21 @@ function RecipesFavorite() {
         type="button"
         dataTestid="filter-by-all-btn"
         name="All"
+        onClick={ () => setFilterStorage(favoriteRecipes) }
       />
       <Button
         type="button"
         dataTestid="filter-by-food-btn"
         name="Food"
+        onClick={ () => setFilterStorage(filterStorage
+          .filter(({ type }) => type === 'comida')) }
       />
       <Button
         type="button"
         dataTestid="filter-by-drink-btn"
         name="Drinks"
+        onClick={ () => setFilterStorage(filterStorage
+          .filter(({ type }) => type === 'bebida')) }
       />
       {filterStorage.map((recipe, index) => (
         <CardRecipeFavorite
