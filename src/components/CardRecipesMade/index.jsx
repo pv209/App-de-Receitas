@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import './style.css';
 import { array, number, string } from 'prop-types';
 import { Link } from 'react-router-dom';
-import clipboardCopy from 'clipboard-copy';
-import { ReactComponent as ShareIcon } from '../../images/shareIcon.svg';
-
-// const copya = require('clipboard-copy');
+import copy from 'clipboard-copy';
+import shareIcon from '../../images/shareIcon.svg';
 
 export default function CardRecipesMade({
   image,
@@ -19,7 +17,7 @@ export default function CardRecipesMade({
   type,
   alcoholicOrNot,
 }) {
-  const [copy, setCopy] = useState(false);
+  const [copyLink, setCopyLink] = useState(false);
 
   function renderTags() {
     if (tags.length === 0) {
@@ -66,13 +64,9 @@ export default function CardRecipesMade({
     );
   }
 
-  async function copyToclipBoard() {
-    try {
-      await clipboardCopy(`http://localhost:3000/${type}s/${id}`);
-    } catch (error) {
-      console.log(error);
-    }
-    setCopy(true);
+  function copyToClipBoard() {
+    copy(`http://localhost:3000/${type}s/${id}`);
+    setCopyLink(true);
   }
 
   return (
@@ -87,12 +81,14 @@ export default function CardRecipesMade({
       <div className="card-recipes-made-content">
         <div>
           {renderRecipeType()}
-          <ShareIcon
-            data-testid={ `${index}-horizontal-share-btn` }
-            width="20px"
-            src="shareIcon"
-            onClick={ copyToclipBoard }
-          />
+          <button type="button" onClick={ copyToClipBoard }>
+            <img
+              src={ shareIcon }
+              alt="share icon"
+              data-testid={ `${index}-horizontal-share-btn` }
+              className="share-icon"
+            />
+          </button>
         </div>
         <Link to={ `/${type}s/${id}` }>
           <span data-testid={ `${index}-horizontal-name` }>
@@ -103,7 +99,7 @@ export default function CardRecipesMade({
           {`Feita em: ${doneDate}`}
         </span>
         {renderTags()}
-        <span>{copy ? 'Link copiado!' : null}</span>
+        <span>{copyLink ? 'Link copiado!' : null}</span>
       </div>
     </div>
   );
