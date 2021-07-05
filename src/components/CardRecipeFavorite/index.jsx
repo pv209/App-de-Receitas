@@ -1,50 +1,80 @@
 import { number, shape, string } from 'prop-types';
-import React, { useEffect, useState } from 'react';
-import { getRecipeById } from '../../service/recipesApi';
-import Button from '../shared/button';
-import { ReactComponent as ShareIcon } from '../../images/shareIcon.svg';
-import { ReactComponent as BlackHeartIcon } from '../../images/blackHeartIcon.svg';
+import React, { useState } from 'react';
+import copy from 'clipboard-copy';
+import shareIcon from '../../images/shareIcon.svg';
+import blackHeartIcon from '../../images/blackHeartIcon.svg';
 
 function CardRecipeFavorite({ index, recipe }) {
-  const [recipeFavorite, setRecipeFavorite] = useState({});
-  const { id, image, name, category, area } = recipe;
+  const { id, image, name, category, area, alcoholicOrNot, type } = recipe;
+  const [linkCopy, setLinkCopy] = useState(false);
 
-  useEffect(() => {
-    async function fetchApi() {
-      const data = await getRecipeById(id);
-      setRecipeFavorite(data);
-    }
-    fetchApi();
-  });
+  function handleClick() {
+    copy(`http://localhost:3000/${type}s/${id}`);
+    setLinkCopy(true);
+  }
 
-  const { strTags } = recipeFavorite || { strTags: '' };
-  console.log(strTags);
+  function renderDrink() {
+    return (
+      <section>
+        <img
+          width="200"
+          data-testid={ `${index}-horizontal-image` }
+          src={ image }
+          alt={ name }
+        />
+        <p data-testid={ `${index}-horizontal-name` }>{ name }</p>
+        <p data-testid={ `${index}-horizontal-top-text` }>{ alcoholicOrNot }</p>
+        <button onClick={ handleClick } type="button">
+          <img
+            data-testid={ `${index}-horizontal-share-btn` }
+            src={ shareIcon }
+            alt="Compartilhar"
+          />
+        </button>
+        <button type="button">
+          <img
+            data-testid={ `${index}-horizontal-favorite-btn` }
+            src={ blackHeartIcon }
+            alt="Favorito"
+          />
+        </button>
+        {linkCopy && <p>Link copiado!</p>}
+      </section>
+    );
+  }
+
+  function renderFood() {
+    return (
+      <section>
+        <img
+          width="200"
+          data-testid={ `${index}-horizontal-image` }
+          src={ image }
+          alt={ name }
+        />
+        <p data-testid={ `${index}-horizontal-name` }>{ name }</p>
+        <p data-testid={ `${index}-horizontal-top-text` }>{ `${area} - ${category}` }</p>
+        <button onClick={ handleClick } type="button">
+          <img
+            data-testid={ `${index}-horizontal-share-btn` }
+            src={ shareIcon }
+            alt="Compartilhar"
+          />
+        </button>
+        <button type="button">
+          <img
+            data-testid={ `${index}-horizontal-favorite-btn` }
+            src={ blackHeartIcon }
+            alt="Favorito"
+          />
+        </button>
+        {linkCopy && <p>Link copiado!</p>}
+      </section>
+    );
+  }
 
   return (
-    <section>
-      <img
-        width="200"
-        data-testid={ `${index}-horizontal-image` }
-        src={ image }
-        alt={ name }
-      />
-      <p data-testid={ `${index}-horizontal-name` }>{ name }</p>
-<<<<<<< HEAD
-      <p data-testid={ `${index}-horizontal-top-text` }>{ `${area} - ${category}` }</p>
-      <p data-testid={ `${index}-${type}-horizontal-tag` }>{ type }</p>
-=======
-      <p data-testid={ `${index}-horizontal-top-text` }>{ category }</p>
-      <p data-testid={ `${index}-horizontal-done-date` }>{ area }</p>
->>>>>>> 33e3bb11eee53bb2cc3d9dd9bec1714f83520b2e
-      <Button
-        dataTestid={ `${index}-horizontal-share-btn` }
-        name={ <ShareIcon /> }
-      />
-      <Button
-        dataTestid={ `${index}-horizontal-favorite-btn` }
-        name={ <BlackHeartIcon /> }
-      />
-    </section>
+    type === 'comida' ? renderFood() : renderDrink()
   );
 }
 
