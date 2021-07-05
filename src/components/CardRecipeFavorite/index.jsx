@@ -1,5 +1,6 @@
 import { number, shape, string } from 'prop-types';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import copy from 'clipboard-copy';
 import shareIcon from '../../images/shareIcon.svg';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
@@ -16,13 +17,15 @@ function CardRecipeFavorite({ index, recipe, handleClickFilter }) {
   function renderDrink() {
     return (
       <section>
-        <img
-          width="200"
-          data-testid={ `${index}-horizontal-image` }
-          src={ image }
-          alt={ name }
-        />
-        <p data-testid={ `${index}-horizontal-name` }>{ name }</p>
+        <Link to={ `/bebidas/${id}` }>
+          <img
+            width="200"
+            data-testid={ `${index}-horizontal-image` }
+            src={ image }
+            alt={ name }
+          />
+          <p data-testid={ `${index}-horizontal-name` }>{ name }</p>
+        </Link>
         <p data-testid={ `${index}-horizontal-top-text` }>{ alcoholicOrNot }</p>
         <button onClick={ handleClick } type="button">
           <img
@@ -46,13 +49,15 @@ function CardRecipeFavorite({ index, recipe, handleClickFilter }) {
   function renderFood() {
     return (
       <section>
-        <img
-          width="200"
-          data-testid={ `${index}-horizontal-image` }
-          src={ image }
-          alt={ name }
-        />
-        <p data-testid={ `${index}-horizontal-name` }>{ name }</p>
+        <Link to={ `/comidas/${id}` }>
+          <img
+            width="200"
+            data-testid={ `${index}-horizontal-image` }
+            src={ image }
+            alt={ name }
+          />
+          <p data-testid={ `${index}-horizontal-name` }>{ name }</p>
+        </Link>
         <p data-testid={ `${index}-horizontal-top-text` }>{ `${area} - ${category}` }</p>
         <button onClick={ handleClick } type="button">
           <img
