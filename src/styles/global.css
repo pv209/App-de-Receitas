@@ -1,5 +1,5 @@
 /* css global */
-.recipe__details button {
+.button_fix_bottom {
   bottom: 0;
   left: 0;
   position: fixed;

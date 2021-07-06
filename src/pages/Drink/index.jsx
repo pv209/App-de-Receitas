@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import Slider from 'react-slick';
+import copy from 'clipboard-copy';
 
 import LinkIcon from '../../components/shared/link';
 import shareIcon from '../../images/shareIcon.svg';
@@ -11,6 +12,7 @@ import { getDrink, getMeals } from '../../service/recipesApi';
 function Drink() {
   const [drink, setDrink] = useState();
   const [foods, setFoods] = useState([]);
+  const [shared, setShared] = useState(false);
   const history = useHistory();
   const { id } = useParams();
 
@@ -50,6 +52,11 @@ function Drink() {
     return ingredients;
   }
 
+  async function copyLink() {
+    await copy(`http://localhost:3000/bebidas/${id}`);
+    setShared(true);
+  }
+
   function renderFood() {
     return (
       <>
@@ -60,11 +67,11 @@ function Drink() {
           width="200"
         />
         <h1 data-testid="recipe-title">{ drink.strDrink }</h1>
-        <LinkIcon
-          href="#"
-          imgPath={ shareIcon }
-          imgAlt="#"
-          testIdLink="share-btn"
+        <Button
+          dataTestid="share-btn"
+          name={ <img src={ shareIcon } alt="share recipe" /> }
+          onClick={ copyLink }
+          type="button"
         />
         <LinkIcon
           href="#"
@@ -72,6 +79,7 @@ function Drink() {
           imgAlt="#"
           testIdLink="favorite-btn"
         />
+        { shared && <span>Link copiado!</span> }
         <p data-testid="recipe-category">{ drink.strAlcoholic }</p>
         <p data-testid="instructions">{ drink.strInstructions }</p>
         { getIngredients(drink) }
@@ -100,6 +108,7 @@ function Drink() {
         type="button"
         onClick={ redirectToInitRecipe }
         name="Iniciar Receita"
+        className="button_fix_bottom"
         dataTestid="start-recipe-btn"
       />
     </main>

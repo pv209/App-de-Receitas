@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import Slider from 'react-slick';
+import copy from 'clipboard-copy';
 
 import LinkIcon from '../../components/shared/link';
 import shareIcon from '../../images/shareIcon.svg';
@@ -11,6 +12,7 @@ import { getDrinks, getRecipeById } from '../../service/recipesApi';
 function Food() {
   const [food, setFood] = useState();
   const [drinksRecommended, setDrinksRecommended] = useState([]);
+  const [shared, setShared] = useState(false);
   const history = useHistory();
   const { id } = useParams();
 
@@ -52,6 +54,11 @@ function Food() {
     return ingredients;
   }
 
+  async function copyLink() {
+    await copy(`http://localhost:3000/comidas/${id}`);
+    setShared(true);
+  }
+
   function getVideoId(url) {
     const positionId = url.indexOf('=') + 1;
     return url.substr(positionId);
@@ -82,11 +89,11 @@ function Food() {
           width="200"
         />
         <h1 data-testid="recipe-title">{ food.strMeal }</h1>
-        <LinkIcon
-          href="#"
-          imgPath={ shareIcon }
-          imgAlt="#"
-          testIdLink="share-btn"
+        <Button
+          dataTestid="share-btn"
+          name={ <img src={ shareIcon } alt="share recipe" /> }
+          onClick={ copyLink }
+          type="button"
         />
         <LinkIcon
           href="#"
@@ -94,6 +101,7 @@ function Food() {
           imgAlt="#"
           testIdLink="favorite-btn"
         />
+        { shared && <span>Link copiado!</span> }
         <p data-testid="recipe-category">{ food.strCategory }</p>
         <p data-testid="instructions">{ food.strInstructions }</p>
         { getIngredients(food) }
@@ -123,6 +131,7 @@ function Food() {
         type="button"
         onClick={ redirectToInitRecipe }
         name="Iniciar Receita"
+        className="button_fix_bottom"
         dataTestid="start-recipe-btn"
       />
     </main>
