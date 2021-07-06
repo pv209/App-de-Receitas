@@ -89,7 +89,7 @@ function Drink() {
   }, []);
 
   return (
-    <main>
+    <main className="recipe__details">
       { drink ? renderFood() : <span>Loading...</span> }
       <Button type="button" name="Iniciar Receita" dataTestid="start-recipe-btn" />
     </main>
