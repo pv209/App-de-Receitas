@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import Slider from 'react-slick';
+
 import LinkIcon from '../../components/shared/link';
 import shareIcon from '../../images/shareIcon.svg';
 import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
@@ -12,12 +13,19 @@ function Drink() {
   const [foods, setFoods] = useState([]);
   const { id } = useParams();
 
+  const settingsSlide = {
+    infinite: false,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+  };
+
   async function loadData() {
     const drinkData = await getDrink(id);
     setDrink(drinkData.drinks[0]);
 
     const recommendedData = await getMeals();
-    setFoods(recommendedData.meals);
+    const { meals } = recommendedData;
+    setFoods([meals[0], meals[1], meals[2], meals[3], meals[4], meals[5]]);
   }
 
   function getIngredients(drinkDetail) {
@@ -66,15 +74,12 @@ function Drink() {
         <p data-testid="recipe-category">{ drink.strAlcoholic }</p>
         <p data-testid="instructions">{ drink.strInstructions }</p>
         { getIngredients(drink) }
-        <Swiper slidesPerView={ 2 }>
+        <Slider { ...settingsSlide }>
           { foods.map((food, index) => (
-            <SwiperSlide
-              key={ food.idMeal }
-              data-testid={ `${index}-recomendation-card` }
-            >
-              {food.strMeal}
-            </SwiperSlide>))}
-        </Swiper>
+            <div key={ food.idMeal } data-testid={ `${index}-recomendation-card` }>
+              <h3 data-testid={ `${index}-recomendation-title` }>{food.strMeal}</h3>
+            </div>))}
+        </Slider>
       </>
     );
   }

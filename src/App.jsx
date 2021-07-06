@@ -15,7 +15,8 @@ import Perfil from './pages/Perfil';
 import NotFound from './pages/NotFound';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'swiper/swiper.min.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import './styles/global.css';
 
 function App() {
