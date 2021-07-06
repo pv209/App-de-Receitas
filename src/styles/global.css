@@ -1,4 +1,10 @@
 /* css global */
+.recipe__details button {
+  bottom: 0;
+  left: 0;
+  position: fixed;
+}
+
 footer {
   bottom: 0;
   left: 0;
