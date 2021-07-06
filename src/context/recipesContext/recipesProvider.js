@@ -11,6 +11,10 @@ import {
 function RecipesProvider({ children }) {
   const [recipes, setRecipes] = useState([]);
   const [typeFilter, setTypeFilter] = useState('');
+  const [dataRecipes, setDataRecipes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [categorys, setCategorys] = useState([]);
+  const [toggle, setToggle] = useState('');
 
   async function getSubmitApiFoods(text, ingredients, name, firtsLetter) {
     const requestApi = filterMethodFoods(text, ingredients, name, firtsLetter);
@@ -38,11 +42,97 @@ function RecipesProvider({ children }) {
     }
   }
 
+  async function fetchRecipes(pathName) {
+    const str = pathName === '/comidas' ? 'themealdb' : 'thecocktaildb';
+    const property = pathName === '/comidas' ? 'meals' : 'drinks';
+    const maxMeal = 12;
+    const fetchApi = await fetch(`https://www.${str}.com/api/json/v1/1/search.php?s=`);
+    const result = await fetchApi.json();
+    const slice = result[property].slice(0, maxMeal);
+    setDataRecipes(slice);
+    console.log(slice);
+    setLoading(false);
+  }
+
+  // async function fetchFood() {
+  //   const maxMeal = 12;
+  //   const fetchApi = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+  //   const result = await fetchApi.json();
+  //   const slice = result.meals.slice(0, maxMeal);
+  //   setData(slice);
+  //   console.log(slice);
+  //   setLoading(false);
+  // }
+
+  async function fetchCategoryRecipes(pathName) {
+    const str = pathName === '/comidas' ? 'themealdb' : 'thecocktaildb';
+    const property = pathName === '/comidas' ? 'meals' : 'drinks';
+    const maxCategory = 5;
+    const fetchApi = await fetch(`https://www.${str}.com/api/json/v1/1/list.php?c=list`);
+    const result = await fetchApi.json();
+    const slice = result[property].slice(0, maxCategory);
+    setCategorys(slice);
+  }
+  // async function fetchDrink() {
+  //   const maxDrink = 12;
+  //   const fetchApi = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
+  //   const result = await fetchApi.json();
+  //   console.log(result);
+  //   const slice = result.drinks.slice(0, maxDrink);
+  //   setData(slice);
+  //   setLoading(false);
+  // }
+  // async function fetchCategoryDrink() {
+  //   const maxCategory = 5;
+  //   const fetchApi = await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list');
+  //   const result = await fetchApi.json();
+  //   const slice = result.drinks.slice(0, maxCategory);
+  //   setCategorys(slice);
+  // }
+
+  // async function filterByCategoryDrink(category) {
+  //   setLoading(true);
+  //   if (category === toggle) {
+  //     return fetchDrink();
+  //   }
+  //   setToggle(category);
+  //   const maxDrinks = 12;
+  //   const fetchApi = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`);
+  //   const result = await fetchApi.json();
+  //   const newdata = result.drinks;
+  //   const slice = newdata.slice(0, maxDrinks);
+  //   setData(slice);
+  //   setLoading(false);
+  // }
+
+  async function filterByCategory(category, pathName) {
+    const property = pathName === '/comidas' ? 'meals' : 'drinks';
+    const str = pathName === '/comidas' ? 'themealdb' : 'thecocktaildb';
+    const maxMeal = 12;
+    if (category === toggle) {
+      return fetchRecipes(pathName);
+    }
+    setToggle(category);
+    setLoading(true);
+    const fetchApi = await fetch(`https://www.${str}.com/api/json/v1/1/filter.php?c=${category}`);
+    const result = await fetchApi.json();
+    const newdata = result[property];
+    const slice = newdata.slice(0, maxMeal);
+    setDataRecipes(slice);
+    setLoading(false);
+  }
+
   const stateRecipes = {
     recipes,
     typeFilter,
     getSubmitApiDrinks,
     getSubmitApiFoods,
+    dataRecipes,
+    loading,
+    categorys,
+    fetchRecipes,
+    fetchCategoryRecipes,
+    filterByCategory,
   };
 
   return (
