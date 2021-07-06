@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import Slider from 'react-slick';
 
 import LinkIcon from '../../components/shared/link';
@@ -11,6 +11,7 @@ import { getDrinks, getRecipeById } from '../../service/recipesApi';
 function Food() {
   const [food, setFood] = useState();
   const [drinksRecommended, setDrinksRecommended] = useState([]);
+  const history = useHistory();
   const { id } = useParams();
 
   const settingsSlide = {
@@ -107,6 +108,10 @@ function Food() {
     );
   }
 
+  function redirectToInitRecipe() {
+    history.push(`/comidas/${id}/in-progress`);
+  }
+
   useEffect(() => {
     loadData().then();
   }, []);
@@ -114,7 +119,12 @@ function Food() {
   return (
     <main className="recipe__details">
       { food ? renderFood() : <span>Loading...</span> }
-      <Button type="button" name="Iniciar Receita" dataTestid="start-recipe-btn" />
+      <Button
+        type="button"
+        onClick={ redirectToInitRecipe }
+        name="Iniciar Receita"
+        dataTestid="start-recipe-btn"
+      />
     </main>
   );
 }
