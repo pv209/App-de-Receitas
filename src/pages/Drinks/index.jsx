@@ -4,36 +4,44 @@ import { shape } from 'prop-types';
 import Header from '../../components/header/index';
 import Footer from '../../components/footer';
 import Button from '../../components/shared/button';
-import DrinkProvider from '../../context/drinkContext/drinkProvider';
+import RecipesProvider from '../../context/recipesContext/recipesProvider';
+import ItemCard from '../../components/itemCard';
+import recipesContext from '../../context/recipesContext/recipesContext';
 
-function Drinks() {
-  const { fetchDrink, data, loading, fetchCategory, categorys,
-    filterByCategory } = useContext(DrinkContext);
+function Drinks({ location }) {
+  const {
+    fetchRecipes,
+    dataRecipes,
+    loading,
+    fetchCategoryRecipes,
+    categorys,
+    filterByCategory,
+  } = useContext(recipesContext);
 
   useEffect(() => {
-    fetchDrink();
-    fetchCategory();
+    fetchRecipes(location.pathname);
+    fetchCategoryRecipes(location.pathname);
   }, []);
 
   return (
-    <DrinkProvider>
+
     <div>
-      <Header pageTitle="Bebidas" />
+      <Header location={ location } pageTitle="Bebidas" />
       <Button
         name="All"
         type="button"
         dataTestid="All-category-filter"
-        onClick={ () => fetchDrink() }
+        onClick={ () => fetchRecipes(location.pathname) }
       />
       {categorys.map((category, index) => (
         <Button
           type="button"
-          onClick={ () => filterByCategory(category.strCategory) }
+          onClick={ () => filterByCategory(category.strCategory, location.pathname) }
           name={ category.strCategory }
           key={ index }
           dataTestid={ `${category.strCategory}-category-filter` }
         />))}
-      {loading ? <span>Carregando...</span> : data.map((drink, index) => (
+      {loading ? <span>Carregando...</span> : dataRecipes.map((drink, index) => (
         <Link to={ `/bebidas/${drink.idDrink}` } key={ drink.idDrink }>
           <ItemCard
             name={ drink.strDrink }
@@ -43,8 +51,8 @@ function Drinks() {
         </Link>
       ))}
       <Footer />
-      </div>
-      </DrinkProvider>
+    </div>
+
   );
 }
 

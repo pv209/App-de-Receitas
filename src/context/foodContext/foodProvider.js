@@ -9,23 +9,7 @@ function FoodProvider({ children }) {
   const [categorys, setCategorys] = useState([]);
   const [toggle, setToggle] = useState('');
 
-  async function fetchFood() {
-    const maxMeal = 12;
-    const fetchApi = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
-    const result = await fetchApi.json();
-    const slice = result.meals.slice(0, maxMeal);
-    setData(slice);
-    console.log(slice);
-    setLoading(false);
-  }
 
-  async function fetchCategory() {
-    const maxCategory = 5;
-    const fetchApi = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list');
-    const result = await fetchApi.json();
-    const slice = result.meals.slice(0, maxCategory);
-    setCategorys(slice);
-  }
   async function filterByCategory(category) {
     const maxMeal = 12;
     if (category === toggle) {
