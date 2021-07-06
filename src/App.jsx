@@ -23,12 +23,12 @@ function App() {
   return (
     <Switch>
       <Route exact path="/" component={ NotFound } />
+      <Route path="/comidas/:id/in-progress" component={ NotFound } />
+      <Route path="/bebidas/:id/in-progress" component={ NotFound } />
       <Route path="/comidas/:id" component={ Food } />
       <Route path="/bebidas/:id" component={ Drink } />
       <Route path="/comidas" component={ Foods } />
       <Route path="/bebidas" component={ Drinks } />
-      <Route path="/comidas/:id/in-progress" component={ NotFound } />
-      <Route path="/bebidas/:id/in-progress" component={ NotFound } />
       <Route path="/explorar" component={ Explorer } />
       <Route path="/explorar/comidas" component={ ExplorerFoods } />
       <Route path="/explorar/bebidas" component={ ExplorerDrinks } />
