@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { string, shape } from 'prop-types';
+import { string, shape, bool } from 'prop-types';
 import ProfileIcon from '../../images/profileIcon.svg';
 
 import SearchButton from '../searchButton';
 import SearchBar from '../SearchBar';
 
-function Header({ pageTitle, location }) {
+function Header({ pageTitle, location, showButton }) {
   const [searchBar, setSearchBar] = useState(false);
   const [searchIcon, setSearchIcon] = useState(true);
 
   function showSearchIcon() {
-    if (pageTitle === 'Perfil') {
+    if (showButton === false) {
       return setSearchIcon(false);
     }
     return setSearchIcon(true);
@@ -34,6 +34,7 @@ function Header({ pageTitle, location }) {
 }
 
 Header.propTypes = {
+  showButton: bool.isRequired,
   pageTitle: string.isRequired,
   location: shape({
     pathname: string,
