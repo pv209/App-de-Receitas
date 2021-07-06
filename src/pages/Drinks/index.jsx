@@ -4,7 +4,6 @@ import { shape } from 'prop-types';
 import Header from '../../components/header/index';
 import Footer from '../../components/footer';
 import Button from '../../components/shared/button';
-import RecipesProvider from '../../context/recipesContext/recipesProvider';
 import ItemCard from '../../components/itemCard';
 import recipesContext from '../../context/recipesContext/recipesContext';
 
