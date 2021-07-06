@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
 import LinkIcon from '../../components/shared/link';
 import shareIcon from '../../images/shareIcon.svg';
 import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
@@ -26,11 +27,12 @@ function Food() {
 
     for (let index = 0; index <= ingredientsSize; index += 1) {
       const ingredient = foodDetail[`strIngredient${index}`];
+      const measure = foodDetail[`strMeasure${index}`];
 
       if (ingredient) {
         const ingredientElement = (
           <span data-testid={ `${index - 1}-ingredient-name-and-measure` }>
-            { ingredient }
+            { `${ingredient} - ${measure}` }
           </span>
         );
         ingredients.push(ingredientElement);

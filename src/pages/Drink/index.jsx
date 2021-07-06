@@ -20,17 +20,18 @@ function Drink() {
     setFoods(recommendedData.meals);
   }
 
-  function getIngredients(foodDetail) {
+  function getIngredients(drinkDetail) {
     const ingredientsSize = 20;
     const ingredients = [];
 
     for (let index = 0; index <= ingredientsSize; index += 1) {
-      const ingredient = foodDetail[`strIngredient${index}`];
+      const ingredient = drinkDetail[`strIngredient${index}`];
+      const measure = drinkDetail[`strMeasure${index}`];
 
       if (ingredient) {
         const ingredientElement = (
           <span data-testid={ `${index - 1}-ingredient-name-and-measure` }>
-            { ingredient }
+            { `${ingredient} - ${measure}` }
           </span>
         );
         ingredients.push(ingredientElement);
@@ -62,7 +63,7 @@ function Drink() {
           imgAlt="#"
           testIdLink="favorite-btn"
         />
-        <p data-testid="recipe-category">{ drink.strCategory }</p>
+        <p data-testid="recipe-category">{ drink.strAlcoholic }</p>
         <p data-testid="instructions">{ drink.strInstructions }</p>
         { getIngredients(drink) }
         <Swiper slidesPerView={ 2 }>
