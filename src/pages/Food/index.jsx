@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import Slider from 'react-slick';
 
 import LinkIcon from '../../components/shared/link';
 import shareIcon from '../../images/shareIcon.svg';
@@ -10,15 +10,24 @@ import { getDrinks, getRecipeById } from '../../service/recipesApi';
 
 function Food() {
   const [food, setFood] = useState();
-  const [drinks, setDrinks] = useState([]);
+  const [drinksRecommended, setDrinksRecommended] = useState([]);
   const { id } = useParams();
+
+  const settingsSlide = {
+    infinite: false,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+  };
 
   async function loadData() {
     const foodData = await getRecipeById(id);
     setFood(foodData.meals[0]);
 
     const recommendedData = await getDrinks();
-    setDrinks(recommendedData.drinks);
+    const { drinks } = recommendedData;
+    setDrinksRecommended([
+      drinks[0], drinks[1], drinks[2], drinks[3], drinks[4], drinks[5],
+    ]);
   }
 
   function getIngredients(foodDetail) {
@@ -88,15 +97,12 @@ function Food() {
         <p data-testid="instructions">{ food.strInstructions }</p>
         { getIngredients(food) }
         { getVideoIframe(food.strYoutube) }
-        <Swiper slidesPerView={ 2 }>
-          { drinks.map((drink, index) => (
-            <SwiperSlide
-              key={ drink.idDrink }
-              data-testid={ `${index}-recomendation-card` }
-            >
-              {drink.strDrink}
-            </SwiperSlide>))}
-        </Swiper>
+        <Slider { ...settingsSlide }>
+          { drinksRecommended.map((drink, index) => (
+            <div key={ drink.idDrink } data-testid={ `${index}-recomendation-card` }>
+              <h3 data-testid={ `${index}-recomendation-title` }>{drink.strDrink}</h3>
+            </div>))}
+        </Slider>
       </>
     );
   }
