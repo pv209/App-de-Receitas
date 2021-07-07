@@ -18,11 +18,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './styles/global.css';
+import Login from "./pages/Login";
 
 function App() {
   return (
     <Switch>
-      <Route exact path="/" component={ NotFound } />
+      <Route exact path="/" component={ Login } />
       <Route path="/comidas/:id/in-progress" component={ NotFound } />
       <Route path="/bebidas/:id/in-progress" component={ NotFound } />
       <Route path="/comidas/:id" component={ Food } />
