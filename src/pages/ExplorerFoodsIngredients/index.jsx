@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 
+import { fetchURLIngredients } from '../../utils/functions';
+
 const MAX_INGREDIENT = 12;
 
 function ExplorerFoodsIngredients() {
@@ -23,9 +25,14 @@ function ExplorerFoodsIngredients() {
   return (
     <>
       <Header showButton={ false } pageTitle="Explorar Ingredientes" />
-      {ingredients.length > 1 ? ingredients.map(({ strIngredient, img }, index) => (
+      {ingredients.length > 1 ? ingredients.map(({ strIngredient }, index) => (
         <section key={ index } data-testid={ `${index}-ingredient-card` }>
-          <img data-testid={ `${index}-card-img` } src={ img } alt={ strIngredient } />
+          <img
+            width="200"
+            data-testid={ `${index}-card-img` }
+            src={ fetchURLIngredients(strIngredient, 'comida') }
+            alt={ strIngredient }
+          />
           <p data-testid={ `${index}-card-name` }>{strIngredient}</p>
         </section>
       )) : <p>Loading ...</p>}
