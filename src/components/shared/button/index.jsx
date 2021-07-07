@@ -27,8 +27,8 @@ Button.propTypes = {
 Button.defaultProps = {
   dataTestid: '',
   disabled: false,
+  onClick: () => {},
   className: '',
-  onClick: '',
 };
 
 export default Button;
