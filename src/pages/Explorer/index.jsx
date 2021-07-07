@@ -3,7 +3,11 @@ import Footer from '../../components/footer';
 
 function Explorer() {
   return (
-    <Footer />
+    <>
+      <button type="button" data-testid="explore-food">Comidas</button>
+      <button type="button" data-testid="explore-drinks">Bedidas</button>
+      <Footer />
+    </>
   );
 }
 
