@@ -64,6 +64,10 @@ function Food() {
     return url.substr(positionId);
   }
 
+  function redirectToInitRecipe() {
+    history.push(`/comidas/${id}/in-progress`);
+  }
+
   function getVideoIframe(url) {
     return (
       <iframe
@@ -114,10 +118,6 @@ function Food() {
         </Slider>
       </>
     );
-  }
-
-  function redirectToInitRecipe() {
-    history.push(`/comidas/${id}/in-progress`);
   }
 
   useEffect(() => {

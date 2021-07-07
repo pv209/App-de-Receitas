@@ -1,10 +1,13 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
+import Login from './pages/Login';
 import Food from './pages/Food';
 import Foods from './pages/Foods';
 import Drink from './pages/Drink';
 import Drinks from './pages/Drinks';
+import RecipesDone from './pages/RecipesDone';
+import RecipesFavorite from './pages/RecipesFavorite';
 import Explorer from './pages/Explorer';
 import ExplorerFoods from './pages/ExplorerFoods';
 import ExplorerDrinks from './pages/ExplorerDrinks';
@@ -22,7 +25,7 @@ import './styles/global.css';
 function App() {
   return (
     <Switch>
-      <Route exact path="/" component={ NotFound } />
+      <Route exact path="/" component={ Login } />
       <Route path="/comidas/:id/in-progress" component={ NotFound } />
       <Route path="/bebidas/:id/in-progress" component={ NotFound } />
       <Route path="/comidas/:id" component={ Food } />
@@ -42,8 +45,8 @@ function App() {
       />
       <Route path="/explorar/comidas/area" component={ ExplorerFoodsLocal } />
       <Route path="/perfil" component={ Perfil } />
-      <Route path="/receitas-feitas" component={ NotFound } />
-      <Route path="/receitas-favoritas" component={ NotFound } />
+      <Route path="/receitas-feitas" component={ RecipesDone } />
+      <Route path="/receitas-favoritas" component={ RecipesFavorite } />
     </Switch>
   );
 }

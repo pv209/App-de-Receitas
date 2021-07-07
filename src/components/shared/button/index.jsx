@@ -6,8 +6,8 @@ function Button({ dataTestid, name, type, disabled, onClick, className }) {
     <button
       data-testid={ dataTestid }
       disabled={ disabled }
-      type={ type === 'submit' ? 'submit' : 'button' }
       onClick={ onClick }
+      type={ type === 'submit' ? 'submit' : 'button' }
       className={ className }
     >
       {name}
@@ -27,8 +27,8 @@ Button.propTypes = {
 Button.defaultProps = {
   dataTestid: '',
   disabled: false,
-  onClick: () => {},
   className: '',
+  onClick: '',
 };
 
 export default Button;

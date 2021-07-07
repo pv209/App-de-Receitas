@@ -57,7 +57,7 @@ function Drink() {
     setShared(true);
   }
 
-  function renderFood() {
+  function renderDrink() {
     return (
       <>
         <img
@@ -103,7 +103,7 @@ function Drink() {
 
   return (
     <main className="recipe__details">
-      { drink ? renderFood() : <span>Loading...</span> }
+      { drink ? renderDrink() : <span>Loading...</span> }
       <Button
         type="button"
         onClick={ redirectToInitRecipe }

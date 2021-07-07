@@ -4,6 +4,7 @@ function NotFound() {
   return (
     <main>
       <p>DEU RUIM</p>
+
     </main>
   );
 }
