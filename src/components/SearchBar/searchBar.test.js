@@ -47,16 +47,16 @@ describe('Test para o Search Bar', () => {
     userEvent.click(button);
   });
 
-  // it(`Test se aparece um alert na tela quando digita mais
-  //   de uma letra na busca por firstLetter`, async () => {
-  //   const { getByTestId, findByTestId } = renderPath('/comidas');
+  it(`Test se aparece um alert na tela quando digita mais
+    de uma letra na busca por firstLetter`, async () => {
+    const { getByTestId, findByTestId } = renderPath('/comidas');
 
-  //   const input = getByTestId(SEARCH_INPUT);
-  //   const radioFirstLetter = getByTestId('first-letter-search-radio');
-  //   const button = await findByTestId(EXER_SEARCH_BTN);
+    const input = getByTestId(SEARCH_INPUT);
+    const radioFirstLetter = getByTestId('first-letter-search-radio');
+    const button = await findByTestId(EXER_SEARCH_BTN);
 
-  //   userEvent.type(input, 'pamonha');
-  //   userEvent.click(radioFirstLetter);
-  //   userEvent.click(button);
-  // });
+    userEvent.type(input, 'pamonha');
+    userEvent.click(radioFirstLetter);
+    userEvent.click(button);
+  });
 });

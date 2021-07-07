@@ -2,7 +2,6 @@ import React from 'react';
 import { string } from 'prop-types';
 
 function ItemCard({ name, image, dataTestId }) {
-  console.log(dataTestId);
   return (
     <div data-testid={ `${dataTestId}-recipe-card` }>
       <h2 data-testid={ `${dataTestId}-card-name` }>{name}</h2>

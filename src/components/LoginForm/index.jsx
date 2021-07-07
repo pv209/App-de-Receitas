@@ -38,10 +38,12 @@ export default function LoginForm() {
     <form>
       <Input
         { ...propsEmailInput }
+        value={ email }
         onChange={ (event) => handleChange(event, setEmail) }
       />
       <Input
         { ...propsPasswordInput }
+        value={ password }
         onChange={ (event) => handleChange(event, setPassword) }
       />
       <Button { ...propsButton } disabled={ buttonDisable } onClick={ handleSubmit } />
