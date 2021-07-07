@@ -32,6 +32,6 @@ export function alertRequestApi() {
 }
 
 export function fetchURLIngredients(ingredients, foodOrDrink) {
-  if (foodOrDrink === 'comida') return `https://www.themealdb.com/images/ingredients/${ingredients}.png`;
-  return `https://www.thecocktaildb.com/images/ingredients/${ingredients}.png`;
+  if (foodOrDrink === 'comida') return `https://www.themealdb.com/images/ingredients/${ingredients}-Small.png`;
+  return `https://www.thecocktaildb.com/images/ingredients/${ingredients}-Small.png`;
 }
