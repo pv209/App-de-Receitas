@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Button from '../../components/shared/button';
 import CardRecipeFavorite from '../../components/CardRecipeFavorite';
-import Header from '../../components/header';
+import Header from '../../components/Header';
 
 const data = [{
   id: 11007,

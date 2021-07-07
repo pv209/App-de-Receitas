@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { shape } from 'prop-types';
-import Header from '../../components/header/index';
-import Footer from '../../components/footer';
+import Header from '../../components/Header/index';
+import Footer from '../../components/Footer';
 import Button from '../../components/shared/button';
-import ItemCard from '../../components/itemCard';
+import ItemCard from '../../components/ItemCard';
 import recipesContext from '../../context/recipesContext/recipesContext';
 
 function Foods({ location }) {
