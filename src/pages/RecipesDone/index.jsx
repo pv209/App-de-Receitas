@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import ButtonsRecipesMade from '../../components/ButtonsRecipesMade';
 import CardRecipesMade from '../../components/CardRecipesMade';
 import recipes from './mockLocalStorage';
+import Header from '../../components/Header';
 import './style.css';
 
-export default function RecipesMade() {
+export default function RecipesDone() {
   const storage = localStorage.getItem('doneRecipes');
   const doneRecipes = storage ? JSON.parse(storage) : recipes;
 
@@ -34,7 +35,7 @@ export default function RecipesMade() {
 
   return (
     <>
-      <h2>receitas feitas</h2>
+      <Header pageTitle="Receitas Feitas" showButton={ false } />
       <section className="recipes-made-container">
         <ButtonsRecipesMade
           filterFoodRecipes={ filterFoodsRecipes }

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Footer from '../../components/footer';
+import Footer from '../../components/Footer';
 import Button from '../../components/shared/button';
-import Header from '../../components/header';
+import Header from '../../components/Header';
 
 function Perfil() {
   const storage = localStorage.getItem('user');
@@ -10,7 +10,7 @@ function Perfil() {
 
   return (
     <>
-      <Header pageTitle="Perfil" />
+      <Header pageTitle="Perfil" showButton={ false } />
       <span
         data-testid="profile-email"
       >
