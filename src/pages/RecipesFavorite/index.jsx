@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Button from '../../components/shared/button';
 import CardRecipeFavorite from '../../components/CardRecipeFavorite';
+import Header from '../../components/header';
 
 const data = [{
   id: 11007,
@@ -24,36 +25,40 @@ function RecipesFavorite() {
   }
 
   return (
-    <section>
-      <Button
-        type="button"
-        dataTestid="filter-by-all-btn"
-        name="All"
-        onClick={ () => setFilterStorage(favoriteRecipes) }
-      />
-      <Button
-        type="button"
-        dataTestid="filter-by-food-btn"
-        name="Food"
-        onClick={ () => setFilterStorage(filterStorage
-          .filter(({ type }) => type === 'comida')) }
-      />
-      <Button
-        type="button"
-        dataTestid="filter-by-drink-btn"
-        name="Drinks"
-        onClick={ () => setFilterStorage(filterStorage
-          .filter(({ type }) => type === 'bebida')) }
-      />
-      {filterStorage.map((recipe, index) => (
-        <CardRecipeFavorite
-          handleClickFilter={ handleClickFilter }
-          key={ index }
-          index={ index }
-          recipe={ recipe }
+    <>
+      <Header pageTitle="Receitas Favoritas" showButton={ false } />
+
+      <section>
+        <Button
+          type="button"
+          dataTestid="filter-by-all-btn"
+          name="All"
+          onClick={ () => setFilterStorage(favoriteRecipes) }
         />
-      ))}
-    </section>
+        <Button
+          type="button"
+          dataTestid="filter-by-food-btn"
+          name="Food"
+          onClick={ () => setFilterStorage(filterStorage
+            .filter(({ type }) => type === 'comida')) }
+        />
+        <Button
+          type="button"
+          dataTestid="filter-by-drink-btn"
+          name="Drinks"
+          onClick={ () => setFilterStorage(filterStorage
+            .filter(({ type }) => type === 'bebida')) }
+        />
+        {filterStorage.map((recipe, index) => (
+          <CardRecipeFavorite
+            handleClickFilter={ handleClickFilter }
+            key={ index }
+            index={ index }
+            recipe={ recipe }
+          />
+        ))}
+      </section>
+    </>
   );
 }
 

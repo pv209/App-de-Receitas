@@ -10,7 +10,7 @@ function Perfil() {
 
   return (
     <>
-      <Header pageTitle="Perfil" />
+      <Header pageTitle="Perfil" showButton={ false } />
       <span
         data-testid="profile-email"
       >
