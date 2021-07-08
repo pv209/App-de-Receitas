@@ -2,25 +2,21 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import Slider from 'react-slick';
 import copy from 'clipboard-copy';
-
-import LinkIcon from '../../components/shared/link';
 import shareIcon from '../../images/shareIcon.svg';
 import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../../images/blackHeartIcon.svg';
 import Button from '../../components/shared/button';
 import { getDrink, getMeals } from '../../service/recipesApi';
+import { getLocalStorage } from '../../utils/setLocalStorage';
+import settingsSlide from '../../utils/constants';
 
 function Drink() {
   const [drink, setDrink] = useState();
   const [foods, setFoods] = useState([]);
+  const [isFavorite, setIsFavorite] = useState(false);
   const [shared, setShared] = useState(false);
   const history = useHistory();
   const { id } = useParams();
-
-  const settingsSlide = {
-    infinite: false,
-    slidesToShow: 2,
-    slidesToScroll: 1,
-  };
 
   async function loadData() {
     const drinkData = await getDrink(id);
@@ -29,6 +25,22 @@ function Drink() {
     const recommendedData = await getMeals();
     const { meals } = recommendedData;
     setFoods([meals[0], meals[1], meals[2], meals[3], meals[4], meals[5]]);
+  }
+  function favoriteRecipe() {
+    setIsFavorite((prevIsFavorite) => !prevIsFavorite);
+    const favoriteRecipes = getLocalStorage('favoriteRecipes');
+    let favoriteFood = [...favoriteRecipes, {
+      id: drink.idDrink,
+      type: 'bebida',
+      area: '',
+      category: drink.strCategory,
+      alcoholicOrNot: drink.strAlcoholic,
+      name: drink.strDrink,
+      image: drink.strDrinkThumb,
+
+    }];
+    favoriteFood = JSON.stringify(favoriteFood);
+    localStorage.setItem('favoriteRecipes', favoriteFood);
   }
 
   function getIngredients(drinkDetail) {
@@ -68,17 +80,20 @@ function Drink() {
         />
         <h1 data-testid="recipe-title">{ drink.strDrink }</h1>
         <Button
-          dataTestid="share-btn"
-          name={ <img src={ shareIcon } alt="share recipe" /> }
+          name={ <img src={ shareIcon } data-testid="share-btn" alt="share recipe" /> }
           onClick={ copyLink }
           type="button"
         />
-        <LinkIcon
-          href="#"
-          imgPath={ whiteHeartIcon }
-          imgAlt="#"
-          testIdLink="favorite-btn"
+        <Button
+          name={ <img
+            src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
+            data-testid="favorite-btn"
+            alt="favorite Recipe"
+          /> }
+          onClick={ favoriteRecipe }
+          type="button"
         />
+
         { shared && <span>Link copiado!</span> }
         <p data-testid="recipe-category">{ drink.strAlcoholic }</p>
         <p data-testid="instructions">{ drink.strInstructions }</p>
@@ -100,6 +115,14 @@ function Drink() {
   useEffect(() => {
     loadData().then();
   }, []);
+
+  useEffect(() => {
+    if (drink) {
+      const favoriteRecipes = getLocalStorage('favoriteRecipes');
+      const favorite = favoriteRecipes.some((recipe) => recipe.id === drink.idDrink);
+      if (favorite) setIsFavorite(true);
+    }
+  }, [drink]);
 
   return (
     <main className="recipe__details">
