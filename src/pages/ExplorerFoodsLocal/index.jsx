@@ -1,9 +1,13 @@
 import React from 'react';
 import Footer from '../../components/Footer';
+import Header from '../../components/Header';
 
 function ExplorerFoodsLocal() {
   return (
-    <Footer />
+    <>
+      <Header pageTitle="Explorar Origem" />
+      <Footer />
+    </>
   );
 }
 
